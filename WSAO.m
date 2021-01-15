@@ -44,8 +44,8 @@ solver = pattern_search(channels,fhandle); % Chose one from optimisation algorit
 
 fig = figure(1);
 axis tight manual
-fig.Position = [35 468 706 871];
-tiledlayout(3,2,'TileSpacing','compact')
+fig.Position = [35 0 706 871];
+tiledlayout(4,2,'TileSpacing','compact')
 
 nexttile(1,[1 1])
 plotWF(initwf);
@@ -83,6 +83,7 @@ for i = 1:iterations
     plotFF(outff);
     title("Current farfield")
     %subplot(3,2,5:6)
+    
     nexttile(5,[1,2]);
     plot(cost);
     title("Performance");
@@ -93,15 +94,15 @@ for i = 1:iterations
 
     [xCentroid,yCentroid]= Centroid(outff);
     txt = sprintf("xCentroid: %.2f, yCentroid: %.2f",xCentroid,yCentroid);
-    text(0.6,1.1,txt,'Units','normalized','FontSize',10)
+    text(0.0,-0.6,txt,'Units','normalized','FontSize',10)
     
     [ooesPercent,ooesCircDia]= oneOverESquared(outff);
     txt = sprintf("ooesPercent: %.2f, ooesCircDia: %.2f",ooesPercent,ooesCircDia);
-    text(0.0,1.1,txt,'Units','normalized','FontSize',10)
+    text(0.6,-0.6,txt,'Units','normalized','FontSize',10)
     
     [xD4S,yD4S,Major_axis_angle] = d4sigma(outff);
     txt = sprintf("xD4S: %.2f, yD4S: %.2f, Major axis angle:%.2f ",xD4S,yD4S,Major_axis_angle);
-    text(0,.5,txt,'Units','normalized','FontSize',10)
+    text(0.0,-1,txt,'Units','normalized','FontSize',10)
     
     drawnow
 end
