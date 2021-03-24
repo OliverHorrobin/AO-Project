@@ -28,7 +28,7 @@ if mu20 > mu02
     
 elseif mu20 < mu02
     
-    if m11 < 0
+    if m11 > 0 %Made a change here < to >
         imAngle = 0.5 * pi - 0.5*atan(2*mu11/(mu20-mu02));
     
     else
@@ -54,7 +54,12 @@ gamma = (mu20 - mu02) / abs(mu20 - mu02);
 
 xD4S = 2*sqrt(2.0) * sqrt(mu20 + mu02 + gamma*sqrt((mu20-mu02)^2 + 4*mu11^2));
 yD4S = 2*sqrt(2.0) * sqrt(mu20 + mu02 - gamma*sqrt((mu20-mu02)^2 + 4*mu11^2));
-Major_axis_angle = imAngle*180/pi;
+
+if imAngle < 0
+    imAngle = imAngle+pi;%To correct it
+end
+
+Major_axis_angle = imAngle*180/pi;%to go from radians to degrees
 
 % Note: When mu20 and mu02 are the same (or pretty muchie to a high dp of
 % similarity) Major_axis_angle is unreliable and should be ignored. This
@@ -64,8 +69,9 @@ Major_axis_angle = imAngle*180/pi;
 
 assignin('base','xD4S',xD4S)
 assignin('base','yD4S',yD4S)
-assignin('base','mu20',mu20)
-assignin('base','mu02',mu02)
+% assignin('base','mu20',mu20)
+% assignin('base','mu02',mu02)
+% assignin('base','mu11',mu11)
 assignin('base','Major_axis_angle',Major_axis_angle)
 
 end
