@@ -115,7 +115,25 @@ function cost = cost_function(pos,wf,mirror,FF)
     ff = FF.generate_farfield(1,outwf)*1e-6;
     ff = medfilt2(ff,[3 3]); % Filter to reduce noise
     maxI = max(ff,[],'all');
-    cost = -maxI;
+    % cost = -maxI; % Original
+    
+    % Converges on the value of cost that you want.
+     [ooesPercent,ooesCircDiam]= oneOverESquared(ff);
+    cost = ooesCircDiam
+    want = 11;
+    Test = round(cost,1);
+    
+    if Test == want
+        return
+    elseif Test > want
+        cost = cost;
+    elseif Test < want
+        cost = - cost;
+        if cost < -want
+            cost = -cost;
+        end
+    end
+    
     % cost = sqrt(sum(outwf(:).^2)/numel(outwf)); % For debuging.
     drawnow
 end
