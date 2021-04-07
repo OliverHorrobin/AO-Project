@@ -173,12 +173,8 @@ function error = Errorfunct(FarF,want) %Function to calculate the cost which is 
 [xD4S,yD4S,Major_axis_angle] = d4sigma(FarF);
 [ooesPercent,ooesCircDia]= oneOverESquared(FarF);
 have = Major_axis_angle; %Set the parameter to meet here
-error = want - have;
-    if error > 0
-        error = error;
-    else
-        error = -error;%Used to keep the difference positive as the program tries to minamalise cost(error)
-    end
+error = abs(want - have);
+
 end
 
 function cost = cost_function(pos,wf,mirror,FF)
