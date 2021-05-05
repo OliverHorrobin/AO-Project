@@ -1,1 +1,0 @@
-Run TrainNet.m to generate a dataset and train a network
