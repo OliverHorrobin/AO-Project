@@ -2,7 +2,7 @@
 
 
 resolution  = 100;  % Resolution of all surfaces
-orders      = 36;   % Aberration orders
+orders      = 0;   % Aberration orders
 channels    = 36;   % Number of mirror channels
 crop_amount = 10;   % Amount to remove from polys
 iterations  = 42;   % Optimisation Iterations
