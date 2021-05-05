@@ -45,11 +45,11 @@ initff = FF.generate_farfield(1,initwf)*1e-6; %ORIGINAl
 % Create solver object to solve objective function
 fhandle = @(r) cost_function(r,initwf,mirror,FF);
 fhandle2 = @(r) cost_function2(r,initwf,mirror,FF);
-fhandle3 = @(r) cost_function3(r,initwf,mirror,FF);
+% fhandle3 = @(r) cost_function3(r,initwf,mirror,FF);
 
 solver = pattern_search(channels,fhandle); % Chose one from optimisation algorithms folder <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 solver2 = pattern_search(channels,fhandle2);%not original
-solver3 = pattern_search(channels,fhandle3);%not original
+% solver3 = pattern_search(channels,fhandle3);%not original
 
 %solver.settings(0.01,0.1,0.1,0);
 
@@ -75,6 +75,7 @@ data = read(ds1);
 
 for i = 1:iterations
     
+% 
     solver2.step();
     % Get voltages and plot wavefront & farfield
     v = solver2.position*100;
@@ -100,6 +101,8 @@ for i = 1:iterations
 % %     Log current cost and number of evals
 %     cost(i) = fhandle(solver.position);
 %     evals(i) = solver.evaluations;
+
+
 
 %     out = sum(outff(:))
     
@@ -248,6 +251,7 @@ function cost = cost_function2(pos,wf,mirror,FF)
     outwf = wf + mirror.shape;
     ff = FF.generate_farfield(1,outwf)*1e-6;
     
+%     ff = medfilt2(ff,[3 3]); % Filter to reduce noise
     ff = BackgroundRemover(ff,5);
     cost = Errorfunct(ff,120); %Set what you are aiming for here
 
@@ -260,10 +264,11 @@ function cost = cost_function3(pos,wf,mirror,FF)
     mirror.set_channels(v);
     outwf = wf + mirror.shape;
     ff = FF.generate_farfield(1,outwf)*1e-6;
-    
+%     ff = medfilt2(ff,[3 3]); % Filter to reduce noise
     ff = BackgroundRemover(ff,5);
-    cost = Errorfunct2(ff,95); %Set what you are aiming for here
+    cost = Errorfunct(ff,95); %Set what you are aiming for here
     
+    % cost = sqrt(sum(outwf(:).^2)/numel(outwf)); % For debuging.
     drawnow
 end
 
