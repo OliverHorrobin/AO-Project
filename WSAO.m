@@ -2,13 +2,13 @@
 
 
 resolution  = 100;  % Resolution of all surfaces
-orders      = 0;   % Aberration orders
+orders      = 100;   % Aberration orders
 channels    = 36;   % Number of mirror channels
 crop_amount = 10;   % Amount to remove from polys
 iterations  = 42;   % Optimisation Iterations
 dm_response = 0.1;  % Mirror response time in sec
 
-
+~figjf
 %rng_seed = 1122;
 %rng(rng_seed)
 
