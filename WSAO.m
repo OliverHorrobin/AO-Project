@@ -60,10 +60,12 @@ tiledlayout(4,2,'TileSpacing','compact')%Not original
 
 nexttile(1,[1 1])
 plotWF(initwf); %<<<<<<<<<<<<<<<<<
+pbaspect([1 1 1])
 title("Input wavefront")
 
 nexttile(2,[1,1])
 plotFF(initff); %<<<<<<<<<<<<<<<<<
+pbaspect([1 1 1])
 title("Initial farfield")
 
 % Prealocating cost and evaluation arrays
@@ -85,12 +87,13 @@ for i = 1:iterations
     cost(i) = fhandle2(solver2.position);
     evals(i) = solver2.evaluations;
    
-%     solver3.step();     
-%     v = solver3.position*100;
-%     mirror.set_channels(v);
-%     outwf = initwf + mirror.shape;
-%     outff = FF.generate_farfield(1,outwf)*1e-6;
-%     
+    solver3.step();     
+    v = solver3.position*100;
+    mirror.set_channels(v);
+    outwf = outwf + mirror.shape;
+    outff = FF.generate_farfield(1,outwf)*1e-6;
+    outff = BackgroundRemover(outff,5);
+    
 %     solver.step();
 %     % Get voltages and plot wavefront & farfield
 %     v = solver.position*100;
@@ -105,10 +108,12 @@ for i = 1:iterations
     
     nexttile(3,[1,1])
     plotWF(outwf); %<<<<<<<<<<<<<<<<<
+    pbaspect([1 1 1])
     title("Output wavefront")
     
     nexttile(4,[1,1])
     plotFF(outff); %<<<<<<<<<<<<<<<<
+    pbaspect([1 1 1])
     title("Current farfield")
     %subplot(3,2,5:6)
     
