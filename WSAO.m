@@ -1,11 +1,11 @@
 % Use CTRL+C in command window to stop simulation
 
 
-resolution  = 100;  % Resolution of all surfaces
-orders      = 36;   % Aberration orders
+resolution  = 50;  % Resolution of all surfaces
+orders      = 0;   % Aberration orders
 channels    = 36;   % Number of mirror channels
 crop_amount = 10;   % Amount to remove from polys
-iterations  = 42;   % Optimisation Iterations
+iterations  = 100;   % Optimisation Iterations
 dm_response = 0.1;  % Mirror response time in sec
 
 %rng_seed = 1122;
@@ -78,24 +78,24 @@ data = read(ds1);
 for i = 1:iterations
     
     solver2.step();
-    % Get voltages and plot wavefront & farfield
     v = solver2.position*100;
     mirror.set_channels(v);
     outwf = initwf + mirror.shape;
     outff = FF.generate_farfield(1,outwf)*1e-6; %ORIGINAL
     outff = BackgroundRemover(outff,5);
+
+%     solver3.step();     
+%     v = solver3.position*100;
+%     mirror.set_channels(v);
+%     outwf = outwf + mirror.shape;
+%     outff = FF.generate_farfield(1,outwf)*1e-6;
+%     outff = BackgroundRemover(outff,5);
+
     cost(i) = fhandle2(solver2.position);
     evals(i) = solver2.evaluations;
-   
-    solver3.step();     
-    v = solver3.position*100;
-    mirror.set_channels(v);
-    outwf = outwf + mirror.shape;
-    outff = FF.generate_farfield(1,outwf)*1e-6;
-    outff = BackgroundRemover(outff,5);
     
 %     solver.step();
-%     % Get voltages and plot wavefront & farfield
+% %     Get voltages and plot wavefront & farfield
 %     v = solver.position*100;
 %     mirror.set_channels(v);
 %     outwf = initwf + mirror.shape;
@@ -267,7 +267,7 @@ function cost = cost_function3(pos,wf,mirror,FF)
     ff = FF.generate_farfield(1,outwf)*1e-6;
     
     ff = BackgroundRemover(ff,5);
-    cost = Errorfunct2(ff,95); %Set what you are aiming for here
+    cost = Errorfunct2(ff,120); %Set what you are aiming for here
     
     drawnow
 end
