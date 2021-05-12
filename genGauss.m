@@ -50,6 +50,11 @@ fullFileName = fullfile(folder,ImLabeljpg);
 imwrite(img.cdata,fullFileName,'jpg');
 end 
 
+
+
+
+
+
 % figure(2)
 % plot(Beam(100,:))% Displays a lineout along x=#
 % title('Lineout')
@@ -57,13 +62,5 @@ end
 
 % surf(Beam)
 
-assignin('base','Beam',Beam)
-end
-
-figure(2)
-plot(Beam(100,:))% Displays a lineout along x=#
-title('Lineout')
-
-% surf(Beam)
 assignin('base','Beam',Beam)
 end

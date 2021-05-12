@@ -15,17 +15,17 @@ m02 = Moment(imgArray,0,2);
 m11 = Moment(imgArray,1,1);
 
 mu20 = (m20 - m10^2/m00)/m00;
-% mu20=round(mu20,10)
+% mu20=round(mu20,3);
 mu02 = (m02 - m01^2/m00)/m00;
-% mu02=round(mu02,10)
+% mu02=round(mu02,3);
 mu11 = (m11 - m10*m01/m00)/m00;
-% mu11=round(mu11,10)
+% mu11=round(mu11,7)
 
 % Get angle of major axis in rads
 
 if mu20 > mu02
     imAngle = -0.5*atan(2*mu11/(mu20-mu02));
-    
+
 elseif mu20 < mu02
     
     if m11 > 0 %Made a change here < to >
@@ -34,7 +34,6 @@ elseif mu20 < mu02
     else
         imAngle = -0.5 * pi - 0.5*atan(2*mu11)/(mu20-mu02);
      
-    
     end  
     
 elseif mu20 == mu02
@@ -61,7 +60,7 @@ end
 
 Major_axis_angle = imAngle*180/pi;%to go from radians to degrees
 
-% Note: When mu20 and mu02 are the same (or pretty muchie to a high dp of
+% Note: When mu20 and mu02 are the same (or pretty much ie to a high dp of
 % similarity) Major_axis_angle is unreliable and should be ignored. This
 % happens when a&b (the constants that describe the Gaussian 
 % centroids which definine the position of the centre of the beam 
