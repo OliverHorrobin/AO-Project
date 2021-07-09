@@ -1,4 +1,4 @@
-
+% Originally designed in python by Chris Gregory
 % Calculate the Mij moment of an image
 
 function [mom] = Moment(imArray,i,j)

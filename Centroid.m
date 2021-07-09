@@ -1,3 +1,4 @@
+% Originally designed in python by Chris Gregory
 % Calculate the centoid position of an image along either the x- or y-axis
 % 	
 % image: array like, required

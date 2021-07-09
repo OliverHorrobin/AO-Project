@@ -1,3 +1,4 @@
+% Originally designed in python by Chris Gregory
 % Calculate the D4 sigma width of a beam - defined as 4 times sigma, where sigma is the 
 % 	standard deviation of the horizontal or vertical marginal distribution, respectively.
 % 	imgArray: array-like, required

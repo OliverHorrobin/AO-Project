@@ -1,8 +1,8 @@
 classdef pattern_search < Solver
     properties
         search_points           % cost sample points around centre point.
-        vertex_size =  1      % initial length of verteces from centroid.
-        shrink_rate = 0.50     % convergance rate from 0 to 1.
+        vertex_size =  1     % initial length of verteces from centroid.
+        shrink_rate = 0.5   % convergance rate from 0 to 1.
         
     end
     methods

@@ -1,3 +1,4 @@
+% Originally designed in python by Chris Gregory
 function [ooesPercent,ooesCircDia] = oneOverESquared(image)
 
 [imageWidth,imageHeight] = size(image);

@@ -45,18 +45,23 @@ if Save == 1
 ImLabel = sprintf("a=%.2f_b=%.2f_x=%.2f_y=%.2f_xBar=%.2f_yBar=%.2f_amplitude=%.2f_Rotation_angle=%.2f_noise=%.2f_xD4S=%.2f_yD4S=%.2f_Major_axis_angle=%.2f_ooesPercent=%.2f_ooesCircDia=%.2f",a,b,x,y,xBar,yBar,amplitude,Rotation_angle,noise,xD4S,yD4S,Major_axis_angle,ooesPercent,ooesCircDia);
 J_add = '.jpg';
 ImLabeljpg = strcat(ImLabel,J_add);
-folder = 'C:\Users\ngp19326\OneDrive - Science and Technology Facilities Council\Phase Correction\MATLAB_Images'; %change folder here
+folder = 'C:\Users\ngp19326\OneDrive - Science and Technology Facilities Council\Phase Correction\MATLAB_Images';
 img = getframe(gcf);
 fullFileName = fullfile(folder,ImLabeljpg);
 imwrite(img.cdata,fullFileName,'jpg');
 end 
 
-% if want to add lineout
-% figure(2)
-% plot(Beam(100,:))% Displays a lineout along x=#
-% title('Lineout')
+
+
+
 
 assignin('base','Beam',Beam)
 end
 
+% figure(2)
+% plot(Beam(100,:))% Displays a lineout along x=#
+% title('Lineout')
 
+
+assignin('base','Beam',Beam)
+end

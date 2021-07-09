@@ -35,7 +35,7 @@ classdef FarField < handle
                 padwidth(2)+1:end-padwidth(2));
             
             % Adding gaussian noise to image, simulating a real camera
-            deviation = obj.noise_dev*max(obj.image,[],'all')/8;
+            deviation = obj.noise_dev*max(obj.image,[],'all')/400;
             mean = obj.noise_mean*max(obj.image,[],'all');
             obj.image = obj.image + deviation*randn(rows,cols) + mean;
             
